@@ -12,17 +12,8 @@ jobs:
   commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
